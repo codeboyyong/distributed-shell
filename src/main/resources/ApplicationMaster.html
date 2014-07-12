@@ -1,0 +1,62 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script language="javascript">
+    var xmlhttp;
+    function init() {
+       // put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
+       xmlhttp = new XMLHttpRequest();
+    }
+    
+    function executeCommand() {
+         var url = "$distributed-shell-url?cmd=" + shell_command.value;
+        xmlhttp.open('GET',url,true);
+        xmlhttp.send(null);
+        xmlhttp.onreadystatechange = function() {
+
+                var resultTextNode =  document.getElementById("shell_result");
+               if (xmlhttp.readyState == 4) {
+                  if ( xmlhttp.status == 200) {
+                       //var result = eval( "(" +  xmlhttp.responseText + ")");
+                      	 var result =    xmlhttp.responseText ;
+
+                       		document.getElementById("shell_result").value=result;
+                       }
+                 }
+                 
+             
+        };
+    }
+  </script>
+</head>
+<body onload="init()">
+	<h3>
+		Hadoop Yarn Distributed Shell
+		</h1>
+		<table>
+
+			<tr>
+				<td>Input Shell Command Here : <input type="button"
+					value="Kill me" onclick="killme()"></input>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="shell_command" size="100"> </input>
+				</td>
+				<td>
+					<button type="button" onclick="executeCommand()">Run</button>
+				</td>
+			</tr>
+			<tr>
+				<td>=======></td>
+			</tr>
+			<tr>
+				<td><input type="text" id="shell_result" size="100"> </input></td>
+			</tr>
+		</table>
+</body>
+</html>

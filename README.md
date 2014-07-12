@@ -28,5 +28,6 @@ $ bin/hadoop jar distributed-shell-1.0-SNAPSHOT.jar com.hortonworks.simpleyarnap
 
 
 Use mvn eclipse:eclipse to generate eclipse project
+Currently this is only developed and tested in Mac os X10.9
 
 
