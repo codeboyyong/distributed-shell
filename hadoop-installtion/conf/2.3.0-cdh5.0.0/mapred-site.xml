@@ -6,7 +6,7 @@
 <configuration>
   <property>
     <name>mapreduce.cluster.temp.dir</name>
-    <value>ALPINE_HADOOP_HOME/tmp</value>
+    <value>HADOOP_HOME/tmp</value>
     <final>true</final>
   </property>
 

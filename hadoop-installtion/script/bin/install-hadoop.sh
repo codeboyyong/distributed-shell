@@ -4,7 +4,7 @@
 #$1 :HADOOP_HOST=localhost
 #$2 :HADOOP_VERSION=2.3.0-cdh5.0.0
 #$3 :HADOOP_URL=http://archive.cloudera.com/cdh5/cdh/5/hadoop-2.3.0-cdh5.0.0.tar.gz
-#$4 :HADOOP_HOME=~/alpinehadoop
+#$4 :HADOOP_HOME=~/hadoop-install
 #$5 :HADOOP_INSTALL=/Users/zhaoyong/dev/adl_new/HadoopInstallation/
 
 if [ "$1" != "" ]

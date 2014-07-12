@@ -4,23 +4,23 @@
 
 <property>
     <name>yarn.resourcemanager.resource-tracker.address</name>
-    <value>ALPINE_HADOOP_HOST:8031</value>
+    <value>HADOOP_HOST:8031</value>
   </property>
   <property>
     <name>yarn.resourcemanager.address</name>
-    <value>ALPINE_HADOOP_HOST:8032</value>
+    <value>HADOOP_HOST:8032</value>
   </property>
   <property>
     <name>yarn.resourcemanager.scheduler.address</name>
-    <value>ALPINE_HADOOP_HOST:8030</value>
+    <value>HADOOP_HOST:8030</value>
   </property>
   <property>
     <name>yarn.resourcemanager.admin.address</name>
-    <value>ALPINE_HADOOP_HOST:8033</value>
+    <value>HADOOP_HOST:8033</value>
   </property>
   <property>
     <name>yarn.resourcemanager.webapp.address</name>
-    <value>ALPINE_HADOOP_HOST:8088</value>
+    <value>HADOOP_HOST:8088</value>
   </property>
   <property>
     <description>Classpath for typical applications.</description>
@@ -49,15 +49,15 @@
   </property>
   <property>
     <name>yarn.nodemanager.local-dirs</name>
-    <value>ALPINE_HADOOP_HOME/data/1/yarn/local</value>
+    <value>HADOOP_HOME/data/1/yarn/local</value>
   </property>
   <property>
     <name>yarn.nodemanager.log-dirs</name>
-    <value>ALPINE_HADOOP_HOME/data/1/yarn/logs</value>
+    <value>HADOOP_HOME/data/1/yarn/logs</value>
   </property>
   <property>
     <description>Where to aggregate logs</description>
     <name>yarn.nodemanager.remote-app-log-dir</name>
-    <value>ALPINE_HADOOP_HOME/data/1/logs/apps</value>
+    <value>HADOOP_HOME/data/1/logs/apps</value>
   </property>
 </configuration>

@@ -1,6 +1,6 @@
 #!/bin/sh
 #This command need 2 input
-#HADOOP_DIR = ~/alpinehadoop/hadoop-2.3.0-cdh5
+#HADOOP_DIR = ~/hadoop-install/hadoop-2.3.0-cdh5
 #HADOOP_ISYARN=true
 
 if [ "$1" != "" ]

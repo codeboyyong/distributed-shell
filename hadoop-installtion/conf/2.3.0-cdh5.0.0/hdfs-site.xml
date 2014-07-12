@@ -4,12 +4,12 @@
 <configuration>
         <property>
             <name>dfs.name.dir</name>
-            <value>ALPINE_HADOOP_HOME/name</value>
+            <value>HADOOP_HOME/name</value>
         </property>
 
         <property>
             <name>dfs.data.dir</name>
-            <value>ALPINE_HADOOP_HOME/data</value>
+            <value>HADOOP_HOME/data</value>
         </property>
 
         <property>
