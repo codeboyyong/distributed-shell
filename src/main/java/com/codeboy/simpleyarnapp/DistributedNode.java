@@ -3,5 +3,8 @@ package com.codeboy.simpleyarnapp;
 public class DistributedNode {
 	String host;
 	String port;
-	String ShellServicePath;
+	String shellServiceURLPath;
+
+	String userName;
+
 }

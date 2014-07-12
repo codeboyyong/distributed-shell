@@ -124,6 +124,14 @@ public static void main(String[] args) throws Exception {
   }
 }
 
+/***
+ * Light weight web server
+ * 1) sever the app master tracking url
+ * 2) server cmd execution REST API
+ * @author zhaoyong
+ *
+ */
+
  class AMHandler implements HttpHandler {
 //http://www.srikanthtechnologies.com/blog/java/rest_service_client.aspx
 	private List<DistributedNode> nodes;
@@ -132,8 +140,15 @@ public static void main(String[] args) throws Exception {
 		this.nodes = nodes;
 	}
 
+	
 	@Override
 	public void handle(HttpExchange t) throws IOException {
+	/**	if is the trackurl 
+		or the cmd rest call
+		
+		1 read html template
+		2 replace url with app url
+		*/
             String response = "This is the distributed shell";
             t.sendResponseHeaders(200, response.length());
             OutputStream os = t.getResponseBody();

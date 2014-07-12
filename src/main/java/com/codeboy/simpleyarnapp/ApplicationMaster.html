@@ -11,7 +11,7 @@
        xmlhttp = new XMLHttpRequest();
     }
     function executeCommand() {
-         var url = "$distributed-shell-url" + empno.value;
+         var url = "$distributed-shell-url?cmd=" + shell_command.value;
         xmlhttp.open('GET',url,true);
         xmlhttp.send(null);
         xmlhttp.onreadystatechange = function() {
@@ -20,7 +20,7 @@
                if (xmlhttp.readyState == 4) {
                   if ( xmlhttp.status == 200) {
                        var result = eval( "(" +  xmlhttp.responseText + ")");
- 
+                       document.getElementById("shell_result").value=result;
                        }
                  }
                  else
