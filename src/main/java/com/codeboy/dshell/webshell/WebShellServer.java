@@ -19,7 +19,7 @@ public class WebShellServer {
 
 	public static final int AM_PORT = 8898;
 	public static final String AM_HOST = "localhost";
-	public static final String AM_URL = "/distrbutedshell";
+	public static final String AM_URL = "/distributedshell";
 	public static final String AM_URL_EXEX_CMD = "/rest/execmd";
 	public static final String PARAM_CMD =  "cmd";
 	
@@ -80,7 +80,7 @@ public class WebShellServer {
  * @author zhaoyong
  * 
  */
-//http://localhot:8898/distrbutedshell
+//http://localhot:8898/distributedshell
 class AMMainPageHandler implements HttpHandler {
  	private List<DistributedNode> nodes;
 	private String URL_TEMPLATE ="$distributed-shell-url";
