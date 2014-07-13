@@ -66,7 +66,7 @@ public class ApplicationMasterClient {
     LocalResource appMasterJar = Records.newRecord(LocalResource.class);
     setupAppMasterJar(jarPath, appMasterJar);
     amContainer.setLocalResources(
-        Collections.singletonMap("simpleapp.jar", appMasterJar));
+        Collections.singletonMap("distributed-shell.jar", appMasterJar));
 
     // Setup CLASSPATH for ApplicationMaster
     Map<String, String> appMasterEnv = new HashMap<String, String>();

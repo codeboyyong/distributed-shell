@@ -1,36 +1,36 @@
 distributed-shell
 ================
 
-A real distributed shell for yarn 
-The target is to create a real distrbuted shell in yarn
+The target of this project is to create a real distrbuted web shell in yarn cluster.
 
-simple usgae:
-1) mvn package
-2) export HADOOP_YARN_HOME=/apache2.2.0/hadoop-2.2.0
-  export HADOOP_VERSION=2.2.0
-3) cp ./target/distributed-shell-0.1.jar $HADOOP_YARN_HOME
-4) cd $HADOOP_YARN_HOME
+###simple usgae:
 
-### Unmanaged mode
+	1) mvn package
+	2)  export HADOOP_YARN_HOME=/apache2.2.0/hadoop-2.2.0
+  		export HADOOP_VERSION=2.2.0
+	3) cp ./target/distributed-shell-0.1.jar $HADOOP_YARN_HOME
+	4) cd $HADOOP_YARN_HOME, then run the following
 
-$ bin/hadoop jar $HADOOP_YARN_HOME/share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-$HADOOP_VERSION.jar \
-Client -classpath distributed-shell-1.0-SNAPSHOT.jar  \
--cmd "java com.codeboy.simpleyarnapp.ApplicationMaster /bin/date 2"
+#### Unmanaged mode
 
-You will the date out put is in the out of the yarn job.
-In my case, it is $HADOOP_YARN_HOME/logs/userlogs/application_1398635014957_0001/container_1398635014957_0001_01_000002
+	$ bin/hadoop jar ./share/hadoop/yarn/hadoop-yarn-applications-unmanaged-am-launcher-$HADOOP_VERSION.jar \
+	Client -classpath distributed-shell-0.1.jar  \
+	-cmd "java com.codeboy.dshell.ApplicationMaster"
 
-### Managed mode
+`The check this url in your browser: http://localhost:8088, click the "TrackingUrl" of your job, you will see the distributed web shell`
 
-$ bin/hadoop fs -copyFromLocal distributed-shell-1.0-SNAPSHOT.jar /apps/simple/distributed-shell-1.0-SNAPSHOT.jar
+#### Managed mode
 
-$ bin/hadoop jar distributed-shell-1.0-SNAPSHOT.jar com.hortonworks.simpleyarnapp.Client /bin/date 2 /apps/simple/distributed-shell-1.0-SNAPSHOT.jar
+	$ bin/hadoop fs -copyFromLocal distributed-shell-0.1.jar /apps/simple/distributed-shell.jar
+
+	$ bin/hadoop jar distributed-shell-0.1.jar com.codeboy.dshell.ApplicationMasterClient /apps/simple/distributed-shell.jar
 
 
 Use mvn eclipse:eclipse to generate eclipse project
 Currently this is only developed and tested in Mac os X10.9 with Eclipse 4.2
 
-### how to test webshell
+### how to test webshell with out the yarn
+
 `mvn exec:java -Dexec.mainClass=com.codeboy.dshell.webshell.WebShellServer`
 
-`http://localhost:8898/distributedshell`
+`open this url in your browser : http://localhost:8898/distributedshell`
