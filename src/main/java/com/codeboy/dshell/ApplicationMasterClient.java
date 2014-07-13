@@ -29,7 +29,7 @@ import org.apache.hadoop.yarn.util.ConverterUtils;
 import org.apache.hadoop.yarn.util.Records;
 
 
-public class Client {	
+public class ApplicationMasterClient {	
 
   Configuration conf = new YarnConfiguration();
   
@@ -131,7 +131,7 @@ public class Client {
   }
   
   public static void main(String[] args) throws Exception {
-    Client c = new Client();
+    ApplicationMasterClient c = new ApplicationMasterClient();
     c.run(args);
   }
 }

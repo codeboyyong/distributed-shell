@@ -4,16 +4,12 @@ public class DistributedNode {
 
 	String host;
 	String port;
-	String shellServiceURLPath;
-
 	String userName;
 
-	public DistributedNode(String host, String port,
-			String shellServiceURLPath, String userName) {
+	public DistributedNode(String host, String port,  String userName) {
 		super();
 		this.host = host;
 		this.port = port;
-		this.shellServiceURLPath = shellServiceURLPath;
 		this.userName = userName;
 	}
 
@@ -31,14 +27,6 @@ public class DistributedNode {
 
 	public void setPort(String port) {
 		this.port = port;
-	}
-
-	public String getShellServiceURLPath() {
-		return shellServiceURLPath;
-	}
-
-	public void setShellServiceURLPath(String shellServiceURLPath) {
-		this.shellServiceURLPath = shellServiceURLPath;
 	}
 
 	public String getUserName() {

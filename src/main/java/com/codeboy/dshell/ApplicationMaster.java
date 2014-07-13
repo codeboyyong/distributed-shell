@@ -6,8 +6,6 @@ import org.apache.hadoop.yarn.client.api.AMRMClient.ContainerRequest;
 import org.apache.hadoop.yarn.client.api.NMClient;
 import org.apache.hadoop.yarn.conf.YarnConfiguration;
 
-import com.codeboy.dshell.webshell.WebShellServer;
-
 public class ApplicationMaster {
  
 	private static final ApplicationMaster INSTANCE = new ApplicationMaster(); 
@@ -20,12 +18,13 @@ public class ApplicationMaster {
 		ApplicationMaster.INSTANCE.start(args);
 	}
 
+	
 	private void start(String[] args) throws Exception {
-		final String command = args[0];
-		final int n = Integer.valueOf(args[1]);
-
+		final String port = args[0];
+ 
 		// Initialize clients to ResourceManager and NodeManagers
 		Configuration conf = new YarnConfiguration();
+		
 		// talk to resource manager
 		AMRMClient<ContainerRequest> rmClient = AMRMClient.createAMRMClient();
 		rmClient.init(conf);
@@ -41,9 +40,11 @@ public class ApplicationMaster {
 		// registerApplicationMaster
 		// resourceManager.registerApplicationMaster(appMasterHostname,
 		// appMasterRpcPort, appMasterTrackingUrl);
-		WebShellServer.INTANCE.start();
+		//start the web shell server
+		ApplicationMasterTrackingUI.startWebShellServer();
 
-		rmClient.registerApplicationMaster(WebShellServer.AM_HOST, WebShellServer.AM_PORT, WebShellServer.URL);
+		rmClient.registerApplicationMaster(ApplicationMasterTrackingUI.AM_HOST, 
+				ApplicationMasterTrackingUI.AM_TRACKING_PORT, ApplicationMasterTrackingUI.AM_TRACKING_URL);
 		// System.out.println("registerApplicationMaster 1");
 		// rmClient.registerApplicationMaster("", 1, "");
 

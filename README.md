@@ -1,4 +1,4 @@
-distrbuted-shell
+distributed-shell
 ================
 
 A real distributed shell for yarn 
@@ -8,7 +8,7 @@ simple usgae:
 1) mvn package
 2) export HADOOP_YARN_HOME=/apache2.2.0/hadoop-2.2.0
   export HADOOP_VERSION=2.2.0
-3) cp ./target/distributed-shell-1.0-SNAPSHOT.jar $HADOOP_YARN_HOME
+3) cp ./target/distributed-shell-0.1.jar $HADOOP_YARN_HOME
 4) cd $HADOOP_YARN_HOME
 
 ### Unmanaged mode
@@ -28,7 +28,7 @@ $ bin/hadoop jar distributed-shell-1.0-SNAPSHOT.jar com.hortonworks.simpleyarnap
 
 
 Use mvn eclipse:eclipse to generate eclipse project
-Currently this is only developed and tested in Mac os X10.9
+Currently this is only developed and tested in Mac os X10.9 with Eclipse 4.2
 
 ### how to test webshell
 `mvn exec:java -Dexec.mainClass=com.codeboy.dshell.webshell.WebShellServer`
