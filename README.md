@@ -30,4 +30,7 @@ $ bin/hadoop jar distributed-shell-1.0-SNAPSHOT.jar com.hortonworks.simpleyarnap
 Use mvn eclipse:eclipse to generate eclipse project
 Currently this is only developed and tested in Mac os X10.9
 
+### how to test webshell
+`mvn exec:java -Dexec.mainClass=com.codeboy.dshell.webshell.WebShellServer`
 
+`http://localhost:8898/distributedshell`
