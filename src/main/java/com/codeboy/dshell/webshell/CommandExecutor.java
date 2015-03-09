@@ -6,14 +6,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.io.StringWriter;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.net.URLDecoder;
 
 public class CommandExecutor {
 
-	public static String executeCommand(String command, boolean waitForResponse) {
+	public static String executeCommand(String command, boolean waitForResponse) throws UnsupportedEncodingException {
 
 		String response = "";
-
+		command = URLDecoder.decode(command,"UTF-8") ;
 		ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
 		pb.redirectErrorStream(true);
 
@@ -50,7 +52,7 @@ public class CommandExecutor {
 							+ e.getMessage());
 		}
 
-		return response;
+		return response+"\n" +AMMainPageHandler.getBashPrompt();
 	}
 
 	/*

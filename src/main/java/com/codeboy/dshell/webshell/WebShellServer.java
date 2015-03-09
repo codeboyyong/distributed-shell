@@ -36,6 +36,7 @@ public class WebShellServer {
 	private Boolean started = false;
 
 	List<DistributedNode> nodes = null;
+	static final String userName = System.getProperty("user.name");
 
 	private MasterNode masterNode;
 
@@ -78,6 +79,7 @@ public class WebShellServer {
 				server.createContext(REST_URL_KILLME, new HttpHandler() {
 					@Override
 					public void handle(HttpExchange t) throws IOException {
+						System.out.println("Got a command of killme! exit now!");
 						System.exit(0);
 					}
 				});
@@ -108,8 +110,7 @@ public class WebShellServer {
 		String mainPageURLPath = System.getProperty("mainPageURLPath");
 		String host = System.getProperty("host");
 		String port = System.getProperty("port");
-		String userName = System.getProperty("user.name");
-		if (mainPageURLPath == null || mainPageURLPath.isEmpty()) {
+ 		if (mainPageURLPath == null || mainPageURLPath.isEmpty()) {
 			mainPageURLPath = "/distributedshell";
 		}
 		if (host == null || host.isEmpty()) {
@@ -131,49 +132,6 @@ public class WebShellServer {
  * @author zhaoyong
  * 
  */
-// http://localhot:8898/distributedshell
-class AMMainPageHandler implements HttpHandler {
-	private List<DistributedNode> nodes;
-	private String URL_TEMPLATE = "$distributed-shell-url";
-	private DistributedNode masterNode;
-
-	public AMMainPageHandler(DistributedNode masterNode,
-			List<DistributedNode> nodes) {
-		this.nodes = nodes;
-		this.masterNode = masterNode;
-	}
-
-	/**
-	 * First version is hardcoded, it is fine now
-	 */
-	@Override
-	public void handle(HttpExchange t) throws IOException {
-		String htmlTemplate = readTemplateHTML("/webshell.html");
-		String response = htmlTemplate.replace(URL_TEMPLATE,
-				masterNode.getHttpBaseURL()
-						+ WebShellServer.AM_REST_URL_EXEX_CMD);
-		WebShellServer.sendResponse(t, response);
-	}
-
-	private String readTemplateHTML(String htmlTemplateResource)
-			throws IOException {
-		InputStream stream = WebShellServer.class
-				.getResourceAsStream(htmlTemplateResource);
-		InputStreamReader is = new InputStreamReader(stream);
-		StringBuilder sb = new StringBuilder();
-		BufferedReader br = new BufferedReader(is);
-		String read = br.readLine();
-
-		while (read != null) {
-			// System.out.println(read);
-			sb.append(read).append("\n");
-			read = br.readLine();
-		}
-
-		return sb.toString();
-	}
-}
-
 // http://localhot:8898/rest/execmd?cmd=ls
 class AMRESTAPIHandler implements HttpHandler {
 	private List<DistributedNode> nodes;

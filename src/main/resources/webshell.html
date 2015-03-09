@@ -1,58 +1,78 @@
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<html ng-app="dsApp">
 <head>
 <title></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.1/angular.min.js"></script>
 <script language="javascript">
-    var xmlhttp;
-    function init() {
-       // put more code here in case you are concerned about browsers that do not provide XMLHttpRequest object directly
-       xmlhttp = new XMLHttpRequest();
-    }
-    
-    function executeCommand() {
-         var url = "$distributed-shell-url?cmd=" + shell_command.value;
-        xmlhttp.open('GET',url,true);
-        xmlhttp.send(null);
-        xmlhttp.onreadystatechange = function() {
 
-                var resultTextNode =  document.getElementById("shell_result");
-               if (xmlhttp.readyState == 4) {
-                  if ( xmlhttp.status == 200) {
-                       //var result = eval( "(" +  xmlhttp.responseText + ")");
-                      	 var result =    xmlhttp.responseText ;
+	var initShell =  "${welcome.msg}" ;
+ 
+	var myDSApp = angular.module('dsApp', []);
+	myDSApp.controller('ShellCtrl', function ($scope, $http){
+          $scope.shell_content=initShell;
+      }); 
+	
+	
+	
+//do it in agular http later
+//todo add color in the shell 
+function executeCommand() {
+     var url = "$distributed-shell-url?cmd=" + shell_command.value;
+     var  xmlhttp = new XMLHttpRequest();
 
-                       		document.getElementById("shell_result").value=result;
-                       }
-                 }
-                 
+     xmlhttp.open('GET',url,true);
+    xmlhttp.send(null);
+
+    xmlhttp.onreadystatechange = function() {
+
+            var resultTextNode =  document.getElementById("shell_result");
+           if (xmlhttp.readyState == 4) {
+              if ( xmlhttp.status == 200) {
+                   //var result = eval( "(" +  xmlhttp.responseText + ")");
+                  	 var result =    xmlhttp.responseText ;
+
+                   		document.getElementById("shell_result").value= resultTextNode.value+"\n"+result;
+                   }
+             }
              
-        };
-    }
+         
+    };
+}
+	
   </script>
 </head>
-<body onload="init()">
+<body ng-controller="ShellCtrl">
 	<h3>
 		Hadoop Yarn Distributed Shell
 		</h1>
 		<table>
 
 			<tr>
-				<td>Input Shell Command Here : <input type="button"
-					value="Kill me" onclick="killme()"></input>
-				</td>
+				<td>Input Shell Command Here :  </td>
 				<td></td>
 			</tr>
 			<tr>
-				<td><input type="text" id="shell_command" size="100"> </input>
+				<td><input type="text" id="shell_command" size="60"> </input>
 				</td>
 				<td>
 					<button type="button" onclick="executeCommand()">Run</button>
 				</td>
 			</tr>
 			<tr>
-				<td><textarea id="shell_result" style="width:400px;height:400px;"> </textarea></td>
+				<td>
+					<textarea id="shell_result"  cols="20"  rows="1000" style="width:400px;height:400px; text-align:left">
+{{shell_content}}
+				 	</textarea>
+				 </td>
+				<td></td>
+			</tr>
+			
+			<tr>
+			<td><input type="button"
+					value="Kill me" onclick="killme()"></input> </td>
+					<td></td>
 			</tr>
 		</table>
 </body>
